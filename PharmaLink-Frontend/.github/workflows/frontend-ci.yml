@@ -1,0 +1,51 @@
+# .github/workflows/frontend-ci.yml
+
+# Name of the workflow that will appear in the "Actions" tab on GitHub
+name: Frontend CI Build and Test
+
+# This tells GitHub WHEN to run this workflow
+on:
+  # Run it on pushes to the 'main' branch
+  push:
+    branches: [ main ]
+  # Also run it on pull requests that target the 'main' branch
+  pull_request:
+    branches: [ main ]
+
+# This defines the actual jobs to run
+jobs:
+  # We have one job called "build-and-test"
+  build-and-test:
+    # It will run on a fresh, virtual Linux machine provided by GitHub
+    runs-on: ubuntu-latest
+
+    # These are the sequential steps the machine will execute
+    steps:
+      # Step 1: Check out your repository's code so the job can use it
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Install Node.js version 18 on the machine
+      - name: Setup Node.js v18
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      # Step 3: Install all project dependencies (just like you did locally)
+      # 'npm ci' is faster and safer for CI than 'npm install'
+      - name: Install Dependencies
+        run: npm ci
+
+      # Step 4: Run the linter to check for code quality
+      - name: Run Linter
+        run: npm run lint
+
+      # Step 5: Run the unit tests
+      # The exact command that you just ran successfully
+      - name: Run Unit Tests
+        run: npm test -- --watchAll=false
+
+      # Step 6: Build the project for production
+      # The exact command that you just ran successfully
+      - name: Build Project
+        run: npm run build

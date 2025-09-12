@@ -40,3 +40,13 @@
 .read-the-docs {
   color: #888;
 }
+
+.MainPage{
+  margin: auto;
+  font-size: larger;
+  background-color:cadetblue;
+  flex-direction: row-reverse;
+  padding-left: 0%;
+  color: rgb(255, 217, 0);
+  font-family: cursive;
+}
