@@ -1,8 +1,15 @@
+// src/App.test.jsx
+
 import { render, screen } from "@testing-library/react";
 import App from "./App";
 
-test("renders main heading", () => {
+test("renders the home page with the correct welcome heading", () => {
   render(<App />);
-  const headingElement = screen.getByText(/Banange the code will be here/i);
+
+  
+  const headingElement = screen.getByRole('heading', {
+    name: /Welcome to PharmaLink/i,
+  });
+
   expect(headingElement).toBeInTheDocument();
 });
