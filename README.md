@@ -15,7 +15,7 @@
 ## 🖥️ Tech Stack
 
 - **Frontend**: React, CSS Modules
-- **Backend**: Node.js (Express), MongoDB  
+- **Backend**: Node.js (Express), Postgresql  
   [Backend repo link](https://github.com/ndjek1/Group_BSE25-7_PharmaLink_Backend)
 - **API**: RESTful endpoints
 - **Authentication**: JWT (handled by backend)
