@@ -1,0 +1,173 @@
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+  background: #f5f8fa;
+}
+
+.auth-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100vw;
+  background:
+    linear-gradient(120deg, rgba(49,196,141,0.6) 0%, rgba(60,141,188,0.6) 100%),
+    url('https://images.unsplash.com/photo-1588776814546-4a3b3a7c7b9f?auto=format&fit=crop&w=1350&q=80');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.pharmalink-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+  margin-top: -2rem;
+}
+
+.pharmalink-logo {
+  width: 44px;
+  height: 44px;
+  background: url('https://img.icons8.com/color/48/000000/pharmacy-shop.png') no-repeat center;
+  background-size: contain;
+  border-radius: 8px;
+}
+
+.pharmalink-title {
+  font-size: 2.3rem;
+  font-weight: 800;
+  color: #31896f;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 8px rgba(49,196,141,0.14);
+}
+
+.auth-form-box {
+  background: rgba(255,255,255,0.96);
+  padding: 3.2rem 3.3rem;
+  border-radius: 22px;
+  box-shadow: 0 8px 32px rgba(60,141,188,0.12), 0 2px 8px rgba(49,196,141,0.05);
+  width: 100%;
+  max-width: 520px;
+  box-sizing: border-box;
+  backdrop-filter: blur(1px);
+  position: relative;
+  z-index: 2;
+}
+
+.auth-form-box h2 {
+  margin-top: 0;
+  margin-bottom: 2rem;
+  color: #31896f;
+  font-size: 2.15rem;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 1.55rem;
+}
+
+.input-group svg {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #47b17a;
+  opacity: 0.8;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 1.15rem 1.2rem 1.15rem 3.5rem;
+  border: 1.5px solid #d8e9e6;
+  border-radius: 12px;
+  font-size: 1.08rem;
+  background-color: #f9fafb;
+  color: #24615d;
+  transition: all 0.2s;
+  box-sizing: border-box;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #31c48d;
+  box-shadow: 0 0 0 2px rgba(49,196,141,0.13);
+}
+
+.auth-button {
+  width: 100%;
+  padding: 1.15rem;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(90deg,#31c48d,#3c8dbc);
+  color: #fff;
+  font-size: 1.18rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-top: 0.5rem;
+  box-shadow: 0 2px 8px rgba(60,141,188,0.09);
+}
+
+.auth-button:hover {
+  background: linear-gradient(90deg,#3c8dbc,#31c48d);
+}
+
+.auth-switch {
+  text-align: center;
+  margin-top: 1.35rem;
+  font-size: 1.03rem;
+}
+
+.auth-link {
+  color: #3c8dbc;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.auth-link:hover {
+  text-decoration: underline;
+  color: #31c48d;
+}
+
+.error-message {
+  color: #d93025;
+  background: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 1.05rem;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 1.35rem;
+  font-size: 1.08rem;
+  letter-spacing: 0.1px;
+}
+
+/* Responsive tweaks for mobile */
+@media (max-width: 600px) {
+  .auth-page {
+    padding: 0.5rem;
+  }
+  .pharmalink-header {
+    margin-bottom: 1rem;
+    margin-top: 0;
+  }
+  .pharmalink-title {
+    font-size: 1.45rem;
+  }
+  .auth-form-box {
+    padding: 1.3rem 0.7rem;
+    max-width: 98vw;
+    border-radius: 14px;
+  }
+  .auth-form-box h2 {
+    font-size: 1.15rem;
+  }
+}

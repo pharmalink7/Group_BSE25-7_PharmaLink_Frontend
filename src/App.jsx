@@ -1,34 +1,24 @@
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-import './App.css'
+// src/App.jsx
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import Navbar from './components/Navbar'; // We can remove this for now
+import HomePage from './pages/HomePage';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import './App.css';
 
 function App() {
-
-
   return (
-    <div className='MainPage'>
-      <nav>Header</nav>
-    <h1> Banange the code will be here😂🤣🤞🤞🎶</h1>
-    <h3>Yeah Thats the same thing as Che's visions</h3>
-
-    <div className='Pharmacies'>
-      <h2> Select a pharmacy brlow:</h2>
-      <ol>
-<option>Pharmacy1</option>
-<img src='vite.svg'></img>
-<option>Pharmacy1</option>
-<img src='vite.svg'></img>
-<option>Pharmacy1</option>
-
-      </ol>
-
-
-    </div>
-
-    </div>
-
-  )
-
+    <Router>
+      {/* <Navbar />  <-- The Navbar is removed for a cleaner auth flow */}
+      <main> {/* Removed the "container" class to allow full-width pages */}
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+        </Routes>
+      </main>
+    </Router>
+  );
 }
-export default App
+
+export default App;
