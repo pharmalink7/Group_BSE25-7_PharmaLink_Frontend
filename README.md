@@ -1,4 +1,4 @@
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/bf7394de-d165-412e-86b4-a6f963aea074" /># Live Link: 
+# Live Link: 
 https://group-bse-25-7-pharma-link-frontend.vercel.app/
 
 # PharmaLink Frontend
