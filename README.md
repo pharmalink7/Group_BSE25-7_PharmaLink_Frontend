@@ -6,7 +6,7 @@
 
 - **Pharmacy Network**: Browse, search, and connect with pharmacies.
 - **Medicine Management**: View available medicines, real-time stock, and details.
-- **Orders & Prescriptions**: Place orders, upload prescriptions, and track status.
+- **Orders **: Place orders
 - **User Dashboard**: Personalized dashboard for pharmacies and customers.
 - **Secure Authentication**: Registration, login, protected routes.
 - **Responsive Design**: Elegant UI for all devices.
