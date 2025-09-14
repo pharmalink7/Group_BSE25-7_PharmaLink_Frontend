@@ -59,10 +59,37 @@ Clone and run:
 [PharmaLink Backend](https://github.com/ndjek1/Group_BSE25-7_PharmaLink_Backend)
 
 ```bash
+# 1. Clone the repository
 git clone https://github.com/ndjek1/Group_BSE25-7_PharmaLink_Backend.git
 cd Group_BSE25-7_PharmaLink_Backend
-npm install
-npm start
+
+# 2. Create a virtual environment (if not already created)
+# On Linux / Mac
+python3 -m venv venv
+
+# On Windows
+python -m venv venv
+
+# 3. Activate the virtual environment
+# Linux / Mac
+source venv/bin/activate
+
+# Windows (PowerShell)
+venv\Scripts\activate
+
+# Windows (Command Prompt)
+venv\Scripts\activate.bat
+
+# 4. Install project dependencies
+pip install --upgrade pip
+pip install -r requirements.txt
+
+# 5. Run migrations
+python manage.py makemigrates
+python manage.py migrate
+# 6. Run server
+python manage.py runserver
+
 ```
 
 ## 📦 Project Structure
