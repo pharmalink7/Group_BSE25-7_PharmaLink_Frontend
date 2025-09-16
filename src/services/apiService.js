@@ -1,6 +1,15 @@
 
 const BASE_URL = 'https://pharmalink-x7j6.onrender.com/api';
 
+// Helper function to get auth headers
+const getAuthHeaders = () => {
+  const token = localStorage.getItem('accessToken');
+  return {
+    'Content-Type': 'application/json',
+    ...(token && { 'Authorization': `Bearer ${token}` })
+  };
+};
+
 export const loginUser = async (credentials) => {
   try {
     // Correct URL is now /token/
@@ -19,7 +28,13 @@ export const loginUser = async (credentials) => {
     }
     
     console.log('Login successful! Tokens received:', data);
-    // When successful, data will be: { "access": "...", "refresh": "..." }
+    // Store tokens in localStorage
+    if (data.access) {
+      localStorage.setItem('accessToken', data.access);
+    }
+    if (data.refresh) {
+      localStorage.setItem('refreshToken', data.refresh);
+    }
     
     return data;
 
@@ -57,5 +72,134 @@ export const registerUser = async (userData) => {
     console.error("Registration error:", error);
     throw error;
   }
+};
+
+// Medicine API functions
+export const getAllMedicines = async (searchQuery = '') => {
+  try {
+    const url = searchQuery 
+      ? `${BASE_URL}/medicines/?search=${encodeURIComponent(searchQuery)}`
+      : `${BASE_URL}/medicines/`;
+    
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: getAuthHeaders(),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.detail || 'Failed to fetch medicines');
+    }
+    
+    return data;
+
+  } catch (error) {
+    console.error("Get medicines error:", error);
+    throw error;
+  }
+};
+
+export const addMedicine = async (medicineData) => {
+  try {
+    const response = await fetch(`${BASE_URL}/medicines/`, {
+      method: 'POST',
+      headers: getAuthHeaders(),
+      body: JSON.stringify(medicineData),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      const errorMessage = Object.values(data).join('\n') || 'Failed to add medicine';
+      throw new Error(errorMessage);
+    }
+    
+    return data;
+
+  } catch (error) {
+    console.error("Add medicine error:", error);
+    throw error;
+  }
+};
+
+export const updateMedicine = async (medicineId, medicineData) => {
+  try {
+    const response = await fetch(`${BASE_URL}/medicines/${medicineId}/`, {
+      method: 'PUT',
+      headers: getAuthHeaders(),
+      body: JSON.stringify(medicineData),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      const errorMessage = Object.values(data).join('\n') || 'Failed to update medicine';
+      throw new Error(errorMessage);
+    }
+    
+    return data;
+
+  } catch (error) {
+    console.error("Update medicine error:", error);
+    throw error;
+  }
+};
+
+export const deleteMedicine = async (medicineId) => {
+  try {
+    const response = await fetch(`${BASE_URL}/medicines/${medicineId}/`, {
+      method: 'DELETE',
+      headers: getAuthHeaders(),
+    });
+
+    if (!response.ok) {
+      const data = await response.json();
+      throw new Error(data.detail || 'Failed to delete medicine');
+    }
+    
+    return { success: true };
+
+  } catch (error) {
+    console.error("Delete medicine error:", error);
+    throw error;
+  }
+};
+
+// Pharmacy API functions
+export const getAllPharmacies = async () => {
+  try {
+    const response = await fetch(`${BASE_URL}/pharmacies/`, {
+      method: 'GET',
+      headers: getAuthHeaders(),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.detail || 'Failed to fetch pharmacies');
+    }
+    
+    return data;
+
+  } catch (error) {
+    console.error("Get pharmacies error:", error);
+    throw error;
+  }
+};
+
+// User authentication helpers
+export const logoutUser = () => {
+  localStorage.removeItem('accessToken');
+  localStorage.removeItem('refreshToken');
+  localStorage.removeItem('user');
+};
+
+export const isAuthenticated = () => {
+  return !!localStorage.getItem('accessToken');
+};
+
+export const getCurrentUser = () => {
+  return JSON.parse(localStorage.getItem('user') || 'null');
 };
 

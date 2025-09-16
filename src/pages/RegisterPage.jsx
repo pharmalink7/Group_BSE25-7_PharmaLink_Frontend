@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { registerUser } from '../services/apiService';
+import { useAuth } from '../contexts/AuthContext';
 import '../styles/AuthForm.css';
 
 function RegisterPage() {
@@ -9,6 +10,9 @@ function RegisterPage() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -23,8 +27,17 @@ function RegisterPage() {
 
     try {
       const username = email.split('@')[0];
-      await registerUser({ username, email, password });
-      alert('Registration successful! Please log in.');
+      const response = await registerUser({ username, email, password });
+      
+      // Auto-login after successful registration
+      const userData = {
+        username: username,
+        email: email,
+        token: response.access || 'temp-token' // Some APIs return token on registration
+      };
+      
+      login(userData);
+      navigate('/dashboard', { replace: true });
     } catch (error) {
       setError(error.message || 'Registration failed. Please try again.');
     } finally {

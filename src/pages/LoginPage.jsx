@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { loginUser } from '../services/apiService';
+import { useAuth } from '../contexts/AuthContext';
 import '../styles/AuthForm.css';
 
 function LoginPage() {
@@ -8,14 +9,29 @@ function LoginPage() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  
+  const { login } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  
+  const from = location.state?.from?.pathname || '/dashboard';
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setError(null);
     setLoading(true);
     try {
-      await loginUser({ email, password });
-      alert('Login successful! Welcome.');
+      const response = await loginUser({ email, password });
+      
+      // Create user object (you might want to get this from the API response)
+      const userData = {
+        username: email.split('@')[0],
+        email: email,
+        token: response.access
+      };
+      
+      login(userData);
+      navigate(from, { replace: true });
     } catch (error) {
       setError(error.message || 'Login failed. Please check your credentials.');
     } finally {

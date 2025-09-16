@@ -1,8 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 import "../styles/Homepage.css";
 
 export default function HomePage() {
+  const { user, logout, isAuthenticated } = useAuth();
+
   return (
     <div className="pharmalink-root">
       {/* Navbar */}
@@ -12,13 +15,25 @@ export default function HomePage() {
           <span>PharmaLink</span>
         </div>
         <ul className="navbar-features">
-          <li><Link to="/dashboard">Dashboard</Link></li>
-          <li><Link to="/pharmacies">Pharmacies</Link></li>
-          <li><Link to="/medicines">Medicines</Link></li>
-          {/* <li><Link to="/orders">Orders</Link></li> */}
-          {/* <li><Link to="/prescriptions">Prescriptions</Link></li> */}
-          <li><Link to="/support">Support</Link></li>
-          <li><Link to="/MyAccount">My Account</Link></li>
+          <li><Link to="/medicines">Browse Medicines</Link></li>
+          {isAuthenticated ? (
+            <>
+              <li><Link to="/dashboard">Dashboard</Link></li>
+              <li><Link to="/support">Support</Link></li>
+              <li>
+                <span className="user-welcome">Welcome, {user?.username}</span>
+              </li>
+              <li>
+                <button onClick={logout} className="logout-btn">Logout</button>
+              </li>
+            </>
+          ) : (
+            <>
+              <li><Link to="/login">Login</Link></li>
+              <li><Link to="/register">Register</Link></li>
+              <li><Link to="/support">Support</Link></li>
+            </>
+          )}
         </ul>
       </nav>
 
@@ -39,8 +54,17 @@ export default function HomePage() {
             </span>
           </p>
           <div className="hero-actions">
-            <Link to="/register" className="btn btn-filled">Get Started</Link>
-            <Link to="/login" className="btn btn-outline">Login</Link>
+            {isAuthenticated ? (
+              <>
+                <Link to="/dashboard" className="btn btn-filled">Go to Dashboard</Link>
+                <Link to="/medicines" className="btn btn-outline">Browse Medicines</Link>
+              </>
+            ) : (
+              <>
+                <Link to="/register" className="btn btn-filled">Get Started</Link>
+                <Link to="/login" className="btn btn-outline">Login</Link>
+              </>
+            )}
           </div>
         </div>
         <div className="hero-image-container">
