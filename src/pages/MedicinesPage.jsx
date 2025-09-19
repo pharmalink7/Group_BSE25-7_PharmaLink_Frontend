@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { getAllMedicines, getAllPharmacies } from '../services/apiService';
-import MedicineList from '../components/MedicineList';
-import MedicineSearch from '../components/MedicineSearch';
-import '../styles/MedicinesPage.css';
+// src/pages/MedicinesPage.jsx
+import React, { useState, useEffect } from "react";
+import { getAllMedicines, getAllPharmacies } from "../services/apiService";
+import MedicineList from "../Components/MedicineList";
+import MedicineSearch from "../Components/MedicineSearch";
+import "../styles/MedicinesPage.css";
 
 const MedicinesPage = () => {
   const [medicines, setMedicines] = useState([]);
   const [pharmacies, setPharmacies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [categoryFilter, setCategoryFilter] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("");
 
   useEffect(() => {
     fetchData();
@@ -21,9 +22,9 @@ const MedicinesPage = () => {
       setLoading(true);
       const [medicinesData, pharmaciesData] = await Promise.all([
         getAllMedicines(),
-        getAllPharmacies()
+        getAllPharmacies(),
       ]);
-      
+
       setMedicines(medicinesData.results || medicinesData || []);
       setPharmacies(pharmaciesData.results || pharmaciesData || []);
     } catch (err) {
@@ -48,16 +49,15 @@ const MedicinesPage = () => {
 
   const handleCategoryFilter = (category) => {
     setCategoryFilter(category);
-    // Filter medicines by category on the frontend
-    const filtered = medicines.filter(medicine => 
-      category === '' || medicine.category === category
+    const filtered = medicines.filter(
+      (medicine) => category === "" || medicine.category === category
     );
     setMedicines(filtered);
   };
 
   const clearFilters = () => {
-    setSearchQuery('');
-    setCategoryFilter('');
+    setSearchQuery("");
+    setCategoryFilter("");
     fetchData();
   };
 
@@ -94,23 +94,33 @@ const MedicinesPage = () => {
       <div className="results-section">
         <div className="results-header">
           <h2>
-            {searchQuery ? `Search Results for "${searchQuery}"` : 'All Medicines'}
-            {categoryFilter && ` in ${categoryFilter.replace('-', ' ')}`}
+            {searchQuery
+              ? `Search Results for "${searchQuery}"`
+              : "All Medicines"}
+            {categoryFilter && ` in ${categoryFilter.replace("-", " ")}`}
           </h2>
           <span className="results-count">
-            {medicines.length} medicine{medicines.length !== 1 ? 's' : ''} found
+            {medicines.length} medicine{medicines.length !== 1 ? "s" : ""} found
           </span>
         </div>
 
         {loading ? (
           <div className="loading">Searching...</div>
         ) : (
-          <MedicineList
-            medicines={medicines}
-            isOwner={false}
-          />
+          <MedicineList medicines={medicines} isOwner={false} />
         )}
       </div>
+
+      {pharmacies.length > 0 && (
+        <div className="pharmacies-section">
+          <h2>Available Pharmacies</h2>
+          <ul>
+            {pharmacies.map((pharma, idx) => (
+              <li key={idx}>{pharma.name || pharma}</li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };

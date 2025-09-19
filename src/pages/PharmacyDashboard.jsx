@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/authContext';
 import { getAllMedicines, addMedicine, updateMedicine, deleteMedicine } from '../services/apiService';
-import AddMedicineForm from '../components/AddMedicineForm';
-import MedicineList from '../components/MedicineList';
+import AddMedicineForm from '../Components/AddMedicineForm';
+import MedicineList from '../Components/MedicineList';
 import '../styles/Dashboard.css';
 
 const PharmacyDashboard = () => {
