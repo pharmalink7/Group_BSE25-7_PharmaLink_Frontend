@@ -1,6 +1,5 @@
 # Live Link: 
-https://group-bse-25-7-pharma-link-frontend.vercel.app/
-
+https://group-bse-25-7-pharma-link-frontend-lywm8u31k.vercel.app/
 # PharmaLink Frontend
 
 **PharmaLink** is a modern web platform for connecting pharmacies and people. This is the frontend for PharmaLink, built with React and designed for seamless integration with the [PharmaLink Backend](https://github.com/ndjek1/Group_BSE25-7_PharmaLink_Backend).
