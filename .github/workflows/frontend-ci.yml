@@ -45,3 +45,36 @@ jobs:
       # Step 6: Builds the React application for production to make sure it compiles correctly.
       - name: Build Project
         run: npm run build
+        
+        
+  deploy-frontend-staging:
+    # This job will only run on pushes to the main branch AND if the build-and-test job succeeded
+    if: github.ref == 'refs/heads/main' && needs.build-and-test.result == 'success'
+    # This is the crucial link: this job needs the build-and-test job to finish successfully first.
+    needs: [build-and-test]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js v18
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      # Install Vercel CLI to use its commands
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      # Pull environment configuration from Vercel
+      - name: Pull Vercel Environment Info
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+      # Build the project with Vercel
+      - name: Build Project with Vercel
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+      # Deploy the pre-built project to Vercel's production environment (your staging)
+      - name: Deploy to Vercel
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}     

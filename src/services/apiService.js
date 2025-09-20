@@ -1,5 +1,7 @@
 
-const BASE_URL = 'https://pharmalink-x7j6.onrender.com/api';
+// const BASE_URL = 'https://pharmalink-x7j6.onrender.com/api';
+   const BASE_URL = 'https://group-bse25-7-pharmalink-backend.onrender.com/';
+
 
 // Helper function to get auth headers
 const getAuthHeaders = () => {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '../contexts/authContext';
+import { useAuth } from '../contexts/AuthContext';
 import { getAllMedicines, addMedicine, updateMedicine, deleteMedicine } from '../services/apiService';
 import AddMedicineForm from '../Components/AddMedicineForm';
 import MedicineList from '../Components/MedicineList';
