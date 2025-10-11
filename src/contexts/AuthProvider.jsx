@@ -1,6 +1,7 @@
 // src/contexts/AuthProvider.jsx
 import React, { useEffect, useState } from "react";
 import { AuthContext } from "./AuthContext";
+import { logoutUser } from "../services/apiService";
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -22,6 +23,8 @@ const AuthProvider = ({ children }) => {
   const logout = () => {
     setUser(null);
     localStorage.removeItem("user");
+    // Also clear tokens used by API requests
+    logoutUser();
   };
 
   const value = {

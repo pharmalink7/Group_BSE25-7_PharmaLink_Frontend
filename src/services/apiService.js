@@ -1,6 +1,7 @@
 
-// const BASE_URL = 'https://pharmalink-x7j6.onrender.com/api';
-   const BASE_URL = 'https://group-bse25-7-pharmalink-backend.onrender.com/api';
+const BASE_URL = 'https://pharmalink-x7j6.onrender.com/api';
+  //  const BASE_URL = 'http://127.0.0.1:8000/api';
+  // const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://group-bse25-7-pharmalink-backend.onrender.com/api';
 
 
 // Helper function to get auth headers
@@ -20,7 +21,7 @@ export const loginUser = async (credentials) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(credentials), // e.g., { username: '...', password: '...' }
+      body: JSON.stringify(credentials), 
     });
 
     const data = await response.json();
@@ -50,7 +51,7 @@ export const loginUser = async (credentials) => {
 export const registerUser = async (userData) => {
   try {
     // From the urls.py, the path is /api/users/ which likely points to a register view
-    const response = await fetch(`${BASE_URL}/users/register/`, { // Assuming this is the endpoint
+    const response = await fetch(`${BASE_URL}/users/register/`, { 
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -88,10 +89,23 @@ export const getAllMedicines = async (searchQuery = '') => {
       headers: getAuthHeaders(),
     });
 
-    const data = await response.json();
+    const contentType = response.headers.get('content-type') || '';
+    const parseBody = async () => {
+      if (contentType.includes('application/json')) {
+        return await response.json();
+      }
+      const text = await response.text();
+      return { detail: text };
+    };
+
+    const data = await parseBody();
 
     if (!response.ok) {
-      throw new Error(data.detail || 'Failed to fetch medicines');
+      if (response.status >= 500) {
+        throw new Error('Server error while fetching medicines. Please try again later.');
+      }
+      const message = (data && (data.detail || data.error)) || 'Failed to fetch medicines';
+      throw new Error(message);
     }
     
     return data;

@@ -4,6 +4,7 @@ import { getAllMedicines, getAllPharmacies } from "../services/apiService";
 import MedicineList from "../Components/MedicineList";
 import MedicineSearch from "../Components/MedicineSearch";
 import "../styles/MedicinesPage.css";
+import { BackButton } from "../Components/Navbar";
 
 const MedicinesPage = () => {
   const [medicines, setMedicines] = useState([]);
@@ -72,6 +73,7 @@ const MedicinesPage = () => {
   return (
     <div className="medicines-page">
       <div className="page-header">
+        <BackButton />
         <h1>Browse Medicines</h1>
         <p>Find medicines available at pharmacies near you</p>
       </div>

@@ -4,38 +4,11 @@ import { useAuth } from "../contexts/AuthContext";
 import "../styles/Homepage.css";
 
 export default function HomePage() {
-  const { user, logout, isAuthenticated } = useAuth();
+  const { isAuthenticated } = useAuth();
 
   return (
     <div className="pharmalink-root">
-      {/* Navbar */}
-      <nav className="navbar">
-        <div className="navbar-logo">
-          <img src="https://img.icons8.com/color/48/000000/pharmacy-shop.png" alt="PharmaLink Logo" />
-          <span>PharmaLink</span>
-        </div>
-        <ul className="navbar-features">
-          <li><Link to="/medicines">Browse Medicines</Link></li>
-          {isAuthenticated ? (
-            <>
-              <li><Link to="/dashboard">Dashboard</Link></li>
-              <li><Link to="/support">Support</Link></li>
-              <li>
-                <span className="user-welcome">Welcome, {user?.username}</span>
-              </li>
-              <li>
-                <button onClick={logout} className="logout-btn">Logout</button>
-              </li>
-            </>
-          ) : (
-            <>
-              <li><Link to="/login">Login</Link></li>
-              <li><Link to="/register">Register</Link></li>
-              <li><Link to="/support">Support</Link></li>
-            </>
-          )}
-        </ul>
-      </nav>
+      {/* Global Navbar renders from App.jsx. Removed page-specific navbar to avoid duplicates. */}
 
       {/* Hero section */}
       <section className="hero">

@@ -43,10 +43,11 @@ const MedicineList = ({ medicines, onUpdate, onDelete, isOwner = false }) => {
   };
 
   const formatPrice = (price) => {
-    return new Intl.NumberFormat('rw-RW', {
+    const numeric = Number(price) || 0;
+    return new Intl.NumberFormat('UGX', {
       style: 'currency',
-      currency: 'RWF'
-    }).format(price);
+      currency: 'UGX'
+    }).format(numeric);
   };
 
   const formatDate = (dateString) => {
@@ -65,6 +66,7 @@ const MedicineList = ({ medicines, onUpdate, onDelete, isOwner = false }) => {
       'diabetes': '#98d8c8',
       'other': '#f7b731'
     };
+    if (!category) return '#95a5a6';
     return colors[category] || '#95a5a6';
   };
 
@@ -177,7 +179,7 @@ const MedicineList = ({ medicines, onUpdate, onDelete, isOwner = false }) => {
                   )}
                 </div>
                 <div className="medicine-badge" style={{ backgroundColor: getCategoryColor(medicine.category) }}>
-                  {medicine.category.replace('-', ' ').toUpperCase()}
+                  {(medicine.category || 'other').replace('-', ' ').toUpperCase()}
                 </div>
               </div>
 

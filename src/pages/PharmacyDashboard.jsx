@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { getAllMedicines, addMedicine, updateMedicine, deleteMedicine } from '../services/apiService';
 import AddMedicineForm from '../Components/AddMedicineForm';
+import { BackButton } from '../Components/Navbar';
 import MedicineList from '../Components/MedicineList';
 import '../styles/Dashboard.css';
 
@@ -27,6 +28,8 @@ const PharmacyDashboard = () => {
       setLoading(false);
     }
   };
+
+  
 
   const handleAddMedicine = async (medicineData) => {
     try {
@@ -69,6 +72,7 @@ const PharmacyDashboard = () => {
   return (
     <div className="dashboard-container">
       <div className="dashboard-header">
+        <BackButton className="mr-2" />
         <h1>Pharmacy Dashboard</h1>
         <p>Welcome back, {user?.username || 'Pharmacy Owner'}!</p>
         <button 

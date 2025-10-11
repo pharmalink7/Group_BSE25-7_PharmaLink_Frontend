@@ -91,6 +91,8 @@
   font-size: 1rem;
   transition: border-color 0.3s ease;
   box-sizing: border-box;
+  background: #ffffff; /* Match login inputs */
+  color: #1f2937;
 }
 
 .form-group input:focus,

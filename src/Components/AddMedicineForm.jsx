@@ -6,19 +6,15 @@ const AddMedicineForm = ({ onSubmit, onCancel }) => {
     name: '',
     description: '',
     price: '',
-    quantity: '',
-    category: '',
-    manufacturer: '',
-    expiry_date: '',
-    prescription_required: false
+    pharmacy: ''
   });
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: value
     }));
   };
 
@@ -27,11 +23,11 @@ const AddMedicineForm = ({ onSubmit, onCancel }) => {
     setLoading(true);
     
     try {
-      // Convert string values to appropriate types
       const submitData = {
-        ...formData,
-        price: parseFloat(formData.price) || 0,
-        quantity: parseInt(formData.quantity) || 0
+        name: formData.name,
+        description: formData.description,
+        price: String(formData.price),
+        pharmacy: Number(formData.pharmacy)
       };
       
       await onSubmit(submitData);
@@ -51,32 +47,17 @@ const AddMedicineForm = ({ onSubmit, onCancel }) => {
         </div>
         
         <form onSubmit={handleSubmit} className="medicine-form">
-          <div className="form-row">
-            <div className="form-group">
-              <label htmlFor="name">Medicine Name *</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                placeholder="e.g., Paracetamol 500mg"
-              />
-            </div>
-            
-            <div className="form-group">
-              <label htmlFor="manufacturer">Manufacturer *</label>
-              <input
-                type="text"
-                id="manufacturer"
-                name="manufacturer"
-                value={formData.manufacturer}
-                onChange={handleChange}
-                required
-                placeholder="e.g., Johnson & Johnson"
-              />
-            </div>
+          <div className="form-group">
+            <label htmlFor="name">Medicine Name *</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              placeholder="e.g., Ibuprofen 200mg"
+            />
           </div>
 
           <div className="form-group">
@@ -93,80 +74,31 @@ const AddMedicineForm = ({ onSubmit, onCancel }) => {
 
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="category">Category *</label>
-              <select
-                id="category"
-                name="category"
-                value={formData.category}
-                onChange={handleChange}
-                required
-              >
-                <option value="">Select Category</option>
-                <option value="pain-relief">Pain Relief</option>
-                <option value="antibiotics">Antibiotics</option>
-                <option value="vitamins">Vitamins</option>
-                <option value="cold-flu">Cold & Flu</option>
-                <option value="digestive">Digestive Health</option>
-                <option value="heart">Heart Health</option>
-                <option value="diabetes">Diabetes</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-            
-            <div className="form-group">
-              <label htmlFor="quantity">Quantity in Stock *</label>
+              <label htmlFor="price">Price *</label>
               <input
-                type="number"
-                id="quantity"
-                name="quantity"
-                value={formData.quantity}
-                onChange={handleChange}
-                required
-                min="0"
-                placeholder="0"
-              />
-            </div>
-          </div>
-
-          <div className="form-row">
-            <div className="form-group">
-              <label htmlFor="price">Price (RWF) *</label>
-              <input
-                type="number"
+                type="text"
                 id="price"
                 name="price"
                 value={formData.price}
                 onChange={handleChange}
                 required
-                min="0"
-                step="0.01"
                 placeholder="0.00"
               />
             </div>
             
             <div className="form-group">
-              <label htmlFor="expiry_date">Expiry Date</label>
+              <label htmlFor="pharmacy">Pharmacy ID *</label>
               <input
-                type="date"
-                id="expiry_date"
-                name="expiry_date"
-                value={formData.expiry_date}
+                type="number"
+                id="pharmacy"
+                name="pharmacy"
+                value={formData.pharmacy}
                 onChange={handleChange}
+                required
+                min="1"
+                placeholder="1"
               />
             </div>
-          </div>
-
-          <div className="form-group checkbox-group">
-            <label className="checkbox-label">
-              <input
-                type="checkbox"
-                name="prescription_required"
-                checked={formData.prescription_required}
-                onChange={handleChange}
-              />
-              <span className="checkmark"></span>
-              Requires Prescription
-            </label>
           </div>
 
           <div className="form-actions">

@@ -29,11 +29,11 @@ function RegisterPage() {
       const username = email.split('@')[0];
       const response = await registerUser({ username, email, password });
       
-      // Auto-login after successful registration
+      
       const userData = {
         username: username,
         email: email,
-        token: response.access || 'temp-token' // Some APIs return token on registration
+        token: response.access || 'temp-token' 
       };
       
       login(userData);

@@ -1,6 +1,6 @@
 // src/App.jsx
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import  AuthProvider  from './contexts/AuthProvider'; // this line is evil!!!
+import  AuthProvider  from './contexts/AuthProvider';
 
 import ProtectedRoute from './Components/ProtectedRoute';
 import HomePage from './pages/HomePage';
@@ -9,11 +9,13 @@ import RegisterPage from './pages/RegisterPage';
 import PharmacyDashboard from './pages/PharmacyDashboard';
 import MedicinesPage from './pages/MedicinesPage';
 import './App.css';
+import Navbar from './Components/Navbar';
 
 function App() {
   return (
     <AuthProvider>
       <Router>
+        <Navbar />
         <main>
           <Routes>
             <Route path="/" element={<HomePage />} />
