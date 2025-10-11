@@ -1,57 +1,39 @@
-# A descriptive name for your workflow. This is what you'll see in the "Actions" tab.
 name: Frontend CI Build and Test
 
-# This section defines when the workflow should run.
 on:
-  # Run it when someone pushes code to the "main" branch.
   push:
     branches: [ main ]
-  # Also run it when someone opens a pull request that targets the "main" branch.
   pull_request:
     branches: [ main ]
 
-# This section defines the actual work to be done.
 jobs:
-  # We are defining a single job named "build-and-test".
   build-and-test:
-    # This job will run on a fresh virtual machine using the latest version of Ubuntu Linux.
     runs-on: ubuntu-latest
 
-    # These are the individual steps the job will execute in order.
     steps:
-      # Step 1: Checks out your code from the repository onto the virtual machine.
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Step 2: Installs Node.js version 18 on the machine so it can run npm commands.
       - name: Setup Node.js v18
         uses: actions/setup-node@v4
         with:
           node-version: '18'
 
-      # Step 3: Installs all the project's dependencies from the package-lock.json file.
-      # 'npm ci' is used in automation because it's faster and more reliable than 'npm install'.
       - name: Install Dependencies
         run: npm ci
 
-      # Step 4: Runs the linter to check for code style issues.
       - name: Run Linter
         run: npm run lint
 
-      # Step 5: Runs the unit tests. The '--watchAll=false' flag makes sure it runs once and then exits.
       - name: Run Unit Tests
         run: npm test -- --watchAll=false
 
-      # Step 6: Builds the React application for production to make sure it compiles correctly.
       - name: Build Project
         run: npm run build
-        
-        
-  deploy-frontend-staging:
-    # This job will only run on pushes to the main branch AND if the build-and-test job succeeded
-    if: github.ref == 'refs/heads/main' && needs.build-and-test.result == 'success'
-    # This is the crucial link: this job needs the build-and-test job to finish successfully first.
+
+  deploy-frontend-production:
     needs: [build-and-test]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push' && success()
     runs-on: ubuntu-latest
 
     steps:
@@ -63,18 +45,23 @@ jobs:
         with:
           node-version: '18'
 
-      # Install Vercel CLI to use its commands
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
 
-      # Pull environment configuration from Vercel
       - name: Pull Vercel Environment Info
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
-      # Build the project with Vercel
       - name: Build Project with Vercel
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
-      # Deploy the pre-built project to Vercel's production environment (your staging)
-      - name: Deploy to Vercel
-        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}     
+      - name: Deploy to Vercel Production
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
