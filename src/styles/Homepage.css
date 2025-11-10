@@ -171,13 +171,7 @@ html, body, #root, .pharmalink-root {
   color: #3c8dbc;
   border-color: #3c8dbc;
 }
-.hero-image-container {
-  /* flex: 1.1;
-  min-width: 500px;
-  display: flex;
-  align-items: center;
-  justify-content: center; */
-}
+
 .hero-image {
   width: 800px;
   max-width: 98vw;
