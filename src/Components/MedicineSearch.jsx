@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/MedicineSearch.css';
 
 const MedicineSearch = ({ 
@@ -9,6 +9,11 @@ const MedicineSearch = ({
   searchQuery 
 }) => {
   const [localSearchQuery, setLocalSearchQuery] = useState(searchQuery || '');
+
+  // Sync local state with parent prop when it changes externally
+  useEffect(() => {
+    setLocalSearchQuery(searchQuery || '');
+  }, [searchQuery]);
 
   const categories = [
     { value: '', label: 'All Categories' },
@@ -28,7 +33,11 @@ const MedicineSearch = ({
   };
 
   const handleInputChange = (e) => {
-    setLocalSearchQuery(e.target.value);
+    const value = e.target.value;
+    setLocalSearchQuery(value);
+    // Trigger search as user types (real-time search)
+    // Only search if there's a value or if clearing (empty string)
+    onSearch(value);
   };
 
   const handleCategoryChange = (e) => {

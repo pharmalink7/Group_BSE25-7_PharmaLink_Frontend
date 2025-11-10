@@ -35,7 +35,7 @@ const AddMedicineForm = ({ onSubmit, onCancel }) => {
       console.error('Error submitting form:', error);
     } finally {
       setLoading(false);
-    }
+    }                                                                                       
   };
 
   return (
@@ -72,7 +72,7 @@ const AddMedicineForm = ({ onSubmit, onCancel }) => {
             />
           </div>
 
-          <div className="form-row">
+          <div className="form-group">
             <div className="form-group">
               <label htmlFor="price">Price *</label>
               <input
@@ -86,19 +86,18 @@ const AddMedicineForm = ({ onSubmit, onCancel }) => {
               />
             </div>
             
-            <div className="form-group">
-              <label htmlFor="pharmacy">Pharmacy ID *</label>
+            {/* <div className="form-group">
+              <label htmlFor="pharmacy">Pharmacy Address *</label>
               <input
-                type="number"
+                type="text"
                 id="pharmacy"
                 name="pharmacy"
                 value={formData.pharmacy}
                 onChange={handleChange}
                 required
-                min="1"
-                placeholder="1"
+                placeholder=" e.g Kampala"
               />
-            </div>
+            </div> */}
           </div>
 
           <div className="form-actions">

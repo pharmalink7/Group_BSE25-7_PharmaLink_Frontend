@@ -5,7 +5,7 @@ import  AuthProvider  from './contexts/AuthProvider';
 import ProtectedRoute from './Components/ProtectedRoute';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
+// import RegisterPage from './pages/RegisterPage';
 import PharmacyDashboard from './pages/PharmacyDashboard';
 import MedicinesPage from './pages/MedicinesPage';
 import './App.css';
@@ -20,7 +20,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
+            {/* <Route path="/register" element={<RegisterPage />} /> */}
             <Route path="/medicines" element={<MedicinesPage />} />
             <Route 
               path="/dashboard" 

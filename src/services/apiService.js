@@ -1,9 +1,9 @@
 
 //Below is the backend url for the deployment environment
-const BASE_URL = 'https://pharmalink-x7j6.onrender.com/api';
+// const BASE_URL = 'https://pharmalink-x7j6.onrender.com/api';
 
   // Below is the backend url for the local
-  //  const BASE_URL = 'http://127.0.0.1:8000/api';  
+   const BASE_URL = 'http://127.0.0.1:8000/api'; 
 
 //Below is the front end url for the staging environment
   // const BASE_URL = 'https://group-bse-25-7-pharma-link-frontend-mu.vercel.app/api';
@@ -53,45 +53,53 @@ export const loginUser = async (credentials) => {
 };
 
 
-export const registerUser = async (userData) => {
-  try {
-    // From the urls.py, the path is /api/users/ which likely points to a register view
-    const response = await fetch(`${BASE_URL}/users/register/`, { 
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      // userData will be { username, email, password }
-      body: JSON.stringify(userData),
-    });
+// export const registerUser = async (userData) => {
+//   try {
+//     // From the urls.py, the path is /api/users/ which likely points to a register view
+//     const response = await fetch(`${BASE_URL}/users/register/`, { 
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       // userData will be { username, email, password }
+//       body: JSON.stringify(userData),
+//     });
 
-    const data = await response.json();
+//     const data = await response.json();
 
-    if (!response.ok) {
-      // Django Rest Framework often sends specific field errors
-      const errorMessage = Object.values(data).join('\n');
-      throw new Error(errorMessage || 'Registration failed');
-    }
+//     if (!response.ok) {
+//       // Django Rest Framework often sends specific field errors
+//       const errorMessage = Object.values(data).join('\n');
+//       throw new Error(errorMessage || 'Registration failed');
+//     }
     
-    console.log('Registration successful:', data);
-    return data;
+//     console.log('Registration successful:', data);
+//     return data;
 
-  } catch (error) {
-    console.error("Registration error:", error);
-    throw error;
-  }
-};
+//   } catch (error) {
+//     console.error("Registration error:", error);
+//     throw error;
+//   }
+// };
 
 // Medicine API functions
-export const getAllMedicines = async (searchQuery = '') => {
+// includeAuth: if true, include auth token (useful for owner-specific endpoints)
+// if false, omit token (public endpoints)
+export const getAllMedicines = async (searchQuery = '', includeAuth = false) => {
   try {
     const url = searchQuery 
       ? `${BASE_URL}/medicines/?search=${encodeURIComponent(searchQuery)}`
       : `${BASE_URL}/medicines/`;
     
+    // For public access (browse page), don't include auth token
+    // For authenticated access (dashboard), include auth token
+    const headers = includeAuth 
+      ? getAuthHeaders() 
+      : { 'Content-Type': 'application/json' };
+    
     const response = await fetch(url, {
       method: 'GET',
-      headers: getAuthHeaders(),
+      headers: headers,
     });
 
     const contentType = response.headers.get('content-type') || '';
@@ -117,6 +125,27 @@ export const getAllMedicines = async (searchQuery = '') => {
 
   } catch (error) {
     console.error("Get medicines error:", error);
+    throw error;
+  }
+};
+
+export const getMyMedicines = async () => {
+  try {
+    const response = await fetch(`${BASE_URL}/medicines/my_medicines/`, {
+      method: 'GET',
+      headers: getAuthHeaders(),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      const message = (data && (data.detail || data.error)) || 'Failed to fetch your medicines';
+      throw new Error(message);
+    }
+
+    return data;
+  } catch (error) {
+    console.error("Get my medicines error:", error);
     throw error;
   }
 };

@@ -148,6 +148,11 @@ html, body, #root, .pharmalink-root {
   display: inline-block;
 }
 .btn-filled {
+   padding: 1.2rem 3.5rem;
+  border-radius: 18px;
+  font-size: 1.38rem;
+  font-weight: bold;
+  text-decoration: none;
   background: linear-gradient(90deg,#31c48d,#3c8dbc);
   color: #fff;
   border: none;

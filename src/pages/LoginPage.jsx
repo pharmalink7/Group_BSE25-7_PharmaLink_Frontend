@@ -75,10 +75,10 @@ function LoginPage() {
           <button type="submit" className="auth-button" disabled={loading}>
             {loading ? 'Logging in...' : 'Login'}
           </button>
-          
+{/*           
           <p className="auth-switch">
             Don't have an account? <Link to="/register" className="auth-link">Sign up</Link>
-          </p>
+          </p> */}
         </form>
       </div>
     </div>

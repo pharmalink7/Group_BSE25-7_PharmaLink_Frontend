@@ -34,8 +34,8 @@ export default function HomePage() {
               </>
             ) : (
               <>
-                <Link to="/register" className="btn btn-filled">Get Started</Link>
-                <Link to="/login" className="btn btn-outline">Login</Link>
+                {/* <Link to="/register" className="btn btn-filled">Get Started</Link> */}
+                <Link to="/login" className="btn btn-filled">Login</Link>
               </>
             )}
           </div>
@@ -88,7 +88,7 @@ export default function HomePage() {
       <section className="cta-section">
         <h2>Connect your pharmacy to the world.</h2>
         <p>PharmaLink empowers pharmacies and people. Join us today.</p>
-        <Link to="/register" className="btn btn-filled">Create Account</Link>
+        <Link to="/login" className="btn btn-filled">Log In to Explore</Link>
       </section>
 
       {/* Footer */}

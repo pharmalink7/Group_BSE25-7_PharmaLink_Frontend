@@ -11,11 +11,7 @@ const MedicineList = ({ medicines, onUpdate, onDelete, isOwner = false }) => {
       name: medicine.name,
       description: medicine.description || '',
       price: medicine.price,
-      quantity: medicine.quantity,
-      category: medicine.category,
-      manufacturer: medicine.manufacturer,
       expiry_date: medicine.expiry_date || '',
-      prescription_required: medicine.prescription_required || false
     });
   };
 

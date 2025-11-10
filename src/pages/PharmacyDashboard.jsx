@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { getAllMedicines, addMedicine, updateMedicine, deleteMedicine } from '../services/apiService';
+import { getMyMedicines, addMedicine, updateMedicine, deleteMedicine } from '../services/apiService';
 import AddMedicineForm from '../Components/AddMedicineForm';
-import { BackButton } from '../Components/Navbar';
 import MedicineList from '../Components/MedicineList';
 import '../styles/Dashboard.css';
 
@@ -20,8 +19,9 @@ const PharmacyDashboard = () => {
   const fetchMedicines = async () => {
     try {
       setLoading(true);
-      const data = await getAllMedicines();
-      setMedicines(data.results || data || []);
+      const data = await getMyMedicines();
+      const fetchedMedicines = Array.isArray(data) ? data : (data.results || data || []);
+      setMedicines(fetchedMedicines);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -72,9 +72,9 @@ const PharmacyDashboard = () => {
   return (
     <div className="dashboard-container">
       <div className="dashboard-header">
-        <BackButton className="mr-2" />
-        <h1>Pharmacy Dashboard</h1>
-        <p>Welcome back, {user?.username || 'Pharmacy Owner'}!</p>
+        <h1>Welcome    {user?.username}  to your Dashboard</h1>
+        <h2>Add your medicines below</h2>
+        {/* <p><strong>Pharmacy Owner:</strong> { user.name }!</p> */}
         <button 
           className="btn btn-primary"
           onClick={() => setShowAddForm(true)}
