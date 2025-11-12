@@ -129,11 +129,18 @@ src/
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📝 License
+## 📝 Contributors
 
-This project is licensed under the MIT License.
+This project was developed by.
 
 ---
+CYIZA NDOLI JEAN DE DIEU  22/X/5245/PS
+NDJEKORNOM VICTOIRE  22/X/5270/PS
+SSENYONJO ALVIN  22/U/6952
+MULINDWA YUSUF  22/U/20859/PS
+ABINSINGUZA LASSE 22/U/5018/PS
+
+
 
 **PharmaLink** – Connecting pharmacies and people, smarter.
 Thank you!!!
