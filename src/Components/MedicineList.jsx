@@ -45,19 +45,19 @@ const MedicineList = ({ medicines, onUpdate, onDelete, isOwner = false }) => {
 
   const formatDate = (d) => (!d ? "N/A" : new Date(d).toLocaleDateString());
 
-  const getCategoryColor = (category) => {
-    const colors = {
-      "pain-relief": "#FF6B6B",
-      antibiotics: "#4ECDC4",
-      vitamins: "#45B7D1",
-      "cold-flu": "#96CEB4",
-      digestive: "#FFEAA7",
-      heart: "#DDA0DD",
-      diabetes: "#98D8C8",
-      other: "#F7B731",
-    };
-    return colors[category] || "#95A5A6";
-  };
+  // const getCategoryColor = (category) => {
+  //   const colors = {
+  //     "pain-relief": "#FF6B6B",
+  //     antibiotics: "#4ECDC4",
+  //     vitamins: "#45B7D1",
+  //     "cold-flu": "#96CEB4",
+  //     digestive: "#FFEAA7",
+  //     heart: "#DDA0DD",
+  //     diabetes: "#98D8C8",
+  //     other: "#F7B731",
+  //   };
+  //   return colors[category] || "#95A5A6";
+  // };
 
   if (medicines.length === 0) {
     return (

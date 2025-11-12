@@ -17,7 +17,7 @@ export function BackButton({ className = '' }) {
 }
 
 function Navbar() {
-  const { isAuthenticated, user, logout } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
   const handleLogout = () => {
     logout();
@@ -34,7 +34,7 @@ function Navbar() {
         {isAuthenticated ? (
           <>
             <li><Link to="/dashboard">Dashboard</Link></li>
-            {/* <li><span className="user-welcome">Welcome, {user?.username}</span></li> */}
+        
             <li><button className="logout-btn" onClick={handleLogout}>Logout</button></li>
           </>
         ) : (

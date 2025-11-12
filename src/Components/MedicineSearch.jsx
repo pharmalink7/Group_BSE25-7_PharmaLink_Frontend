@@ -3,7 +3,7 @@ import '../styles/MedicineSearch.css';
 
 const MedicineSearch = ({ 
   onSearch, 
-  onCategoryFilter, 
+  // onCategoryFilter, 
   categoryFilter, 
   onClearFilters, 
   searchQuery 
@@ -15,17 +15,17 @@ const MedicineSearch = ({
     setLocalSearchQuery(searchQuery || '');
   }, [searchQuery]);
 
-  const categories = [
-    { value: '', label: 'All Categories' },
-    { value: 'pain-relief', label: 'Pain Relief' },
-    { value: 'antibiotics', label: 'Antibiotics' },
-    { value: 'vitamins', label: 'Vitamins' },
-    { value: 'cold-flu', label: 'Cold & Flu' },
-    { value: 'digestive', label: 'Digestive Health' },
-    { value: 'heart', label: 'Heart Health' },
-    { value: 'diabetes', label: 'Diabetes' },
-    { value: 'other', label: 'Other' }
-  ];
+  // const categories = [
+  //   { value: '', label: 'All Categories' },
+  //   { value: 'pain-relief', label: 'Pain Relief' },
+  //   { value: 'antibiotics', label: 'Antibiotics' },
+  //   { value: 'vitamins', label: 'Vitamins' },
+  //   { value: 'cold-flu', label: 'Cold & Flu' },
+  //   { value: 'digestive', label: 'Digestive Health' },
+  //   { value: 'heart', label: 'Heart Health' },
+  //   { value: 'diabetes', label: 'Diabetes' },
+  //   { value: 'other', label: 'Other' }
+  // ];
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -40,10 +40,10 @@ const MedicineSearch = ({
     onSearch(value);
   };
 
-  const handleCategoryChange = (e) => {
-    const category = e.target.value;
-    onCategoryFilter(category);
-  };
+  // const handleCategoryChange = (e) => {
+  //   const category = e.target.value;
+  //   onCategoryFilter(category);
+  // };
 
   return (
     <div className="medicine-search">

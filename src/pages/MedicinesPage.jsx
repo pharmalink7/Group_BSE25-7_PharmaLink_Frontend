@@ -177,6 +177,12 @@ const MedicinesPage = () => {
         ) : (
           <MedicineList medicines={medicines} isOwner={false} />
         )}
+         {error && (
+        <div className="error-message">
+          {error}
+          <button onClick={() => setError(null)}>×</button>
+        </div>
+      )}
       </div>
 
       {pharmacies.length > 0 && (
