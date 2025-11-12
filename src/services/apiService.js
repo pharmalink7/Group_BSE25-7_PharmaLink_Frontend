@@ -253,3 +253,27 @@ export const getCurrentUser = () => {
   return JSON.parse(localStorage.getItem('user') || 'null');
 };
 
+// AI Symptom Checker API
+export const analyzeSymptoms = async (symptomsText) => {
+  try {
+    const response = await fetch(`${BASE_URL}/symptom-checker/`, {
+      method: 'POST',
+      headers: getAuthHeaders(),
+      body: JSON.stringify({ symptoms: symptomsText }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      const message = (data && (data.detail || data.error)) || 'AI symptom analysis failed';
+      throw new Error(message);
+    }
+
+    return data;
+  } catch (error) {
+    console.error("Symptom checker error:", error);
+    throw error;
+  }
+};
+
+
