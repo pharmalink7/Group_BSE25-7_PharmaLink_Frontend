@@ -1,173 +1,173 @@
-html, body, #root {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', 'Roboto', sans-serif;
-  background: #f5f8fa;
+
+
+/* ====== Auth Page Layout ====== */
+.auth-page {
+  background: linear-gradient(135deg, #e3f2fd, #f8fafc);
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
 }
 
-.auth-page {
+.auth-container {
+  display: flex;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  max-width: 950px;
+  width: 100%;
+}
+
+/* ====== Brand Section ====== */
+.auth-brand-section {
+  flex: 1;
+  background: linear-gradient(160deg, #6ab7df, #1e88e5);
+  color: #fff;
+  padding: 60px 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  width: 100vw;
-  background:
-    linear-gradient(120deg, rgba(49,196,141,0.6) 0%, rgba(60,141,188,0.6) 100%),
-    url('https://images.unsplash.com/photo-1588776814546-4a3b3a7c7b9f?auto=format&fit=crop&w=1350&q=80');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  position: relative;
 }
 
-.pharmalink-header {
+.brand-logo {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+}
+
+.brand-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.brand-tagline {
+  font-size: 1rem;
+  color: #e3f2fd;
+  line-height: 1.5;
+}
+
+/* ====== Form Section ====== */
+.auth-form-box {
+  flex: 1;
+  padding: 60px 50px;
   display: flex;
   align-items: center;
-  gap: 0.8rem;
-  margin-bottom: 2rem;
-  margin-top: -2rem;
+  justify-content: center;
 }
 
-.pharmalink-logo {
-  width: 44px;
-  height: 44px;
-  background: url('https://img.icons8.com/color/48/000000/pharmacy-shop.png') no-repeat center;
-  background-size: contain;
-  border-radius: 8px;
-}
-
-.pharmalink-title {
-  font-size: 2.3rem;
-  font-weight: 800;
-  color: #31896f;
-  letter-spacing: 1px;
-  text-shadow: 0 1px 8px rgba(49,196,141,0.14);
-}
-
-.auth-form-box {
-  background: rgba(255,255,255,0.96);
-  padding: 3.2rem 3.3rem;
-  border-radius: 22px;
-  box-shadow: 0 8px 32px rgba(60,141,188,0.12), 0 2px 8px rgba(49,196,141,0.05);
+.auth-form {
   width: 100%;
-  max-width: 520px;
-  box-sizing: border-box;
-  backdrop-filter: blur(1px);
-  position: relative;
-  z-index: 2;
+  max-width: 360px;
 }
 
-.auth-form-box h2 {
-  margin-top: 0;
-  margin-bottom: 2rem;
-  color: #31896f;
-  font-size: 2.15rem;
+.form-title {
+  font-size: 1.8rem;
   font-weight: 700;
-  text-align: center;
-  letter-spacing: 0.5px;
+  color: #1565c0;
+  margin-bottom: 10px;
 }
 
+.form-subtitle {
+  color: #555;
+  font-size: 0.95rem;
+  margin-bottom: 25px;
+}
+
+/* ====== Inputs ====== */
 .input-group {
-  position: relative;
-  margin-bottom: 1.55rem;
+  display: flex;
+  align-items: center;
+  background: #f5f7fa;
+  border-radius: 10px;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border: 1px solid #e0e0e0;
+  transition: 0.2s;
 }
 
 .input-group svg {
-  position: absolute;
-  left: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #47b17a;
-  opacity: 0.8;
+  margin-right: 10px;
+  color: #1565c0;
 }
 
 .input-group input {
-  width: 100%;
-  padding: 1.15rem 1.2rem 1.15rem 3.5rem;
-  border: 1.5px solid #d8e9e6;
-  border-radius: 12px;
-  font-size: 1.08rem;
-  background-color: #f9fafb;
-  color: #24615d;
-  transition: all 0.2s;
-  box-sizing: border-box;
-}
-
-.input-group input:focus {
+  border: none;
   outline: none;
-  border-color: #31c48d;
-  box-shadow: 0 0 0 2px rgba(49,196,141,0.13);
+  flex: 1;
+  background: transparent;
+  font-size: 0.95rem;
+  color: #333;
 }
 
+.input-group:focus-within {
+  border-color: #1565c0;
+  background: #eef6ff;
+}
+
+/* ====== Button ====== */
 .auth-button {
   width: 100%;
-  padding: 1.15rem;
-  border: none;
-  border-radius: 12px;
-  background: linear-gradient(90deg,#31c48d,#3c8dbc);
+  background: #6ab7df;
   color: #fff;
-  font-size: 1.18rem;
-  font-weight: bold;
+  border: none;
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 10px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s;
-  margin-top: 0.5rem;
-  box-shadow: 0 2px 8px rgba(60,141,188,0.09);
+  margin-top: 10px;
+  transition: 0.3s;
 }
 
 .auth-button:hover {
-  background: linear-gradient(90deg,#3c8dbc,#31c48d);
+  background: #0d47a1;
+  transform: translateY(-1px);
 }
 
+/* ====== Error Message ====== */
+.error-message {
+  background: #ffebee;
+  color: #c62828;
+  border: 1px solid #ffcdd2;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* ====== Switch Link ====== */
 .auth-switch {
   text-align: center;
-  margin-top: 1.35rem;
-  font-size: 1.03rem;
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #555;
 }
 
 .auth-link {
-  color: #3c8dbc;
+  color: #1565c0;
+  font-weight: 600;
   text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s;
 }
 
 .auth-link:hover {
   text-decoration: underline;
-  color: #31c48d;
 }
 
-.error-message {
-  color: #d93025;
-  background: #f8d7da;
-  border: 1px solid #f5c6cb;
-  padding: 1.05rem;
-  border-radius: 10px;
-  text-align: center;
-  margin-bottom: 1.35rem;
-  font-size: 1.08rem;
-  letter-spacing: 0.1px;
-}
+/* ====== Responsive ====== */
+@media (max-width: 800px) {
+  .auth-container {
+    flex-direction: column;
+  }
 
-/* Responsive tweaks for mobile */
-@media (max-width: 600px) {
-  .auth-page {
-    padding: 0.5rem;
+  .auth-brand-section {
+    padding: 40px 30px;
+    text-align: center;
   }
-  .pharmalink-header {
-    margin-bottom: 1rem;
-    margin-top: 0;
-  }
-  .pharmalink-title {
-    font-size: 1.45rem;
-  }
+
   .auth-form-box {
-    padding: 1.3rem 0.7rem;
-    max-width: 98vw;
-    border-radius: 14px;
-  }
-  .auth-form-box h2 {
-    font-size: 1.15rem;
+    padding: 40px 30px;
   }
 }
