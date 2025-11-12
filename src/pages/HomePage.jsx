@@ -19,10 +19,7 @@ export default function HomePage() {
           <p>
             The smart way to connect pharmacies and people.<br />
             <span className="hero-slogan">
-              <svg width="28" height="28" fill="none" viewBox="0 0 24 24" style={{ verticalAlign: "middle", marginRight: 6 }}>
-                <circle cx="12" cy="12" r="10" stroke="#31c48d" strokeWidth="2" />
-                <path d="M8 12h8M12 8v8" stroke="#3c8dbc" strokeWidth="2" />
-              </svg>
+              
               Your pharmacy network, reimagined.
             </span>
           </p>
@@ -42,7 +39,7 @@ export default function HomePage() {
         </div>
         <div className="hero-image-container">
           <img
-            src="/edagala.jpg"
+            src="/hero.jpeg"
             alt="Connecting pharmacies and people"
             className="hero-image"
           />
@@ -93,25 +90,33 @@ export default function HomePage() {
 
       {/* Footer */}
       <footer className="footer">
-        <div className="footer-logo">
-          <img src="https://img.icons8.com/color/48/000000/pharmacy-shop.png" alt="PharmaLink" />
-          <span>PharmaLink © 2025</span>
-        </div>
-        <div className="footer-info">
-          <div>
-            <strong>Contact Us:</strong> support@pharmalink.com | +123-456-7890
-          </div>
-          <div>
-            <strong>Location:</strong> Kigali, Rwanda &bull; Open 24/7
-          </div>
-          <div>
-            <strong>Follow Us:</strong>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="footer-social">Twitter</a>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="footer-social">Facebook</a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="footer-social">Instagram</a>
-          </div>
-        </div>
-      </footer>
+  <div className="footer-content">
+    <div className="footer-section brand">
+      <h3>PharmaLink</h3>
+      <p>Connecting patients with trusted pharmacies and medicines.</p>
+    </div>
+
+    <div className="footer-section links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+
+    <div className="footer-section contact">
+      <h4>Contact</h4>
+      <p>Email: support@pharmalink.com</p>
+      <p>Phone: +256 700 123 456</p>
+    </div>
+  </div>
+
+  <div className="footer-bottom">
+    <p>© {new Date().getFullYear()} PharmaLink. All rights reserved.</p>
+  </div>
+</footer>
+
     </div>
   );
 }

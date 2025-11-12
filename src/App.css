@@ -17,7 +17,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 0.8rem 2rem;
-  background: linear-gradient(90deg, #2bb673, #2fa6a3); /* greener tone */
+  background: white; /* greener tone */
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
   position: sticky;
   top: 0;
@@ -30,7 +30,7 @@ body {
   gap: 0.5rem;
   font-weight: 800;
   font-size: 1.4rem;
-  color: #ffffff;
+  color: #0a3e5c;
   text-decoration: none;
 }
 
@@ -56,7 +56,7 @@ body {
 
 .nav-links a, .nav-links button, .nav-links span.user-welcome {
   text-decoration: none;
-  color: #e8f7f0;
+  color: black;
   font-weight: 600;
   background: transparent;
   border: none;
@@ -68,15 +68,15 @@ body {
 }
 
 .nav-links a:hover, .nav-links button:hover {
-  color: #ffffff;
-  text-decoration: underline;
+  color: #6ab7df;
+  text-decoration: none;
 }
 
 .logout-btn {
   padding: 0.4rem 0.9rem;
   border-radius: 6px;
   background: rgba(255,255,255,0.15);
-  color: #ffffff !important;
+  color: #db0f0f !important;
 }
 
 .logout-btn:hover {

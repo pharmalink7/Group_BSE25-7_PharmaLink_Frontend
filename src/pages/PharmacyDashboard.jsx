@@ -29,13 +29,11 @@ const PharmacyDashboard = () => {
     }
   };
 
-  
-
   const handleAddMedicine = async (medicineData) => {
     try {
       await addMedicine(medicineData);
       setShowAddForm(false);
-      fetchMedicines(); // Refresh the list
+      fetchMedicines();
     } catch (err) {
       setError(err.message);
     }
@@ -44,7 +42,7 @@ const PharmacyDashboard = () => {
   const handleUpdateMedicine = async (medicineId, medicineData) => {
     try {
       await updateMedicine(medicineId, medicineData);
-      fetchMedicines(); // Refresh the list
+      fetchMedicines();
     } catch (err) {
       setError(err.message);
     }
@@ -54,7 +52,7 @@ const PharmacyDashboard = () => {
     try {
       if (window.confirm('Are you sure you want to delete this medicine?')) {
         await deleteMedicine(medicineId);
-        fetchMedicines(); // Refresh the list
+        fetchMedicines();
       }
     } catch (err) {
       setError(err.message);
@@ -71,25 +69,31 @@ const PharmacyDashboard = () => {
 
   return (
     <div className="dashboard-container">
+      {/* Header Section */}
       <div className="dashboard-header">
-        <h1>Welcome    {user?.username}  to your Dashboard</h1>
-        <h2>Add your medicines below</h2>
-        {/* <p><strong>Pharmacy Owner:</strong> { user.name }!</p> */}
-        <button 
-          className="btn btn-primary"
+        <h1 className="dashboard-title">
+          Welcome, <span>{user?.username || 'Pharmacist'}</span>
+        </h1>
+        <p className="dashboard-subtitle">
+          Manage your medicines easily — add, update, or remove from your pharmacy stock.
+        </p>
+        <button
+          className="add-btn"
           onClick={() => setShowAddForm(true)}
         >
-          Add New Medicine
+          + Add New Medicine
         </button>
       </div>
 
+      {/* Error message */}
       {error && (
         <div className="error-message">
           {error}
-          <button onClick={() => setError(null)}>×</button>
+          <button onClick={() => setError(null)} className="close-error">×</button>
         </div>
       )}
 
+      {/* Add form */}
       {showAddForm && (
         <AddMedicineForm
           onSubmit={handleAddMedicine}
@@ -97,8 +101,9 @@ const PharmacyDashboard = () => {
         />
       )}
 
+      {/* Medicine list */}
       <div className="dashboard-content">
-        <h2>Your Medicines ({medicines.length})</h2>
+        <h2 className="section-title">Your Medicines ({medicines.length})</h2>
         <MedicineList
           medicines={medicines}
           onUpdate={handleUpdateMedicine}

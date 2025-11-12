@@ -48,7 +48,7 @@ const MedicineSearch = ({
   return (
     <div className="medicine-search">
       <div className="search-container">
-        <form onSubmit={handleSearchSubmit} className="search-form">
+              <form onSubmit={handleSearchSubmit} className="search-form">
           <div className="search-input-group">
             <input
               type="text"
@@ -68,7 +68,7 @@ const MedicineSearch = ({
         </form>
 
         <div className="filters-section">
-          <div className="filter-group">
+          {/* <div className="filter-group">
             <label htmlFor="category-filter">Category:</label>
             <select
               id="category-filter"
@@ -82,7 +82,7 @@ const MedicineSearch = ({
                 </option>
               ))}
             </select>
-          </div>
+          </div> */}
 
           {(searchQuery || categoryFilter) && (
             <button onClick={onClearFilters} className="clear-filters-btn">

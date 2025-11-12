@@ -26,7 +26,6 @@ function Navbar() {
   return (
     <nav className="navbar">
       <Link to="/" className="nav-brand">
-        <span className="nav-logo">💊</span>
         PharmaLink
       </Link>
       <ul className="nav-links">
@@ -35,7 +34,7 @@ function Navbar() {
         {isAuthenticated ? (
           <>
             <li><Link to="/dashboard">Dashboard</Link></li>
-            <li><span className="user-welcome">Welcome, {user?.username}</span></li>
+            {/* <li><span className="user-welcome">Welcome, {user?.username}</span></li> */}
             <li><button className="logout-btn" onClick={handleLogout}>Logout</button></li>
           </>
         ) : (

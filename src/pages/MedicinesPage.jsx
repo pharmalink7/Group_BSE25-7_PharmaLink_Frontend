@@ -150,18 +150,7 @@ const MedicinesPage = () => {
 
   return (
     <div className="medicines-page">
-      <div className="page-header">
-        <h1>Browse Medicines</h1>
-        <p>Find medicines available at pharmacies near you</p>
-      </div>
-
-      {error && (
-        <div className="error-message">
-          {error}
-          <button onClick={() => setError(null)}>×</button>
-        </div>
-      )}
-
+      
       <MedicineSearch
         onSearch={handleSearch}
         onCategoryFilter={handleCategoryFilter}

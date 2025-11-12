@@ -1,144 +1,94 @@
+/* ====== Dashboard General ====== */
 .dashboard-container {
+  padding: 60px 8%;
+  background: #f8fafc;
   min-height: 100vh;
-  background: linear-gradient(120deg, #e3fdfd 0%, #e9f5fc 100%);
-  padding: 2rem;
+  color: #333;
 }
 
+/* ====== Header ====== */
 .dashboard-header {
   text-align: center;
-  margin-bottom: 3rem;
-  background: white;
-  padding: 2rem;
+  margin-bottom: 40px;
+  background: #e3f2fd;
+  padding: 40px 20px;
   border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(49, 196, 141, 0.1);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
 }
 
-.dashboard-header h1 {
-  color: #31896f;
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-  font-weight: 800;
+.dashboard-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1565c0;
+  margin-bottom: 10px;
 }
 
-.dashboard-header p {
-  color: #24615d;
-  font-size: 1.2rem;
-  margin-bottom: 1.5rem;
+.dashboard-title span {
+  color: #0d47a1;
 }
 
-.btn {
-  padding: 0.8rem 2rem;
+.dashboard-subtitle {
+  color: #555;
+  font-size: 1.05rem;
+  margin-bottom: 20px;
+}
+
+/* ====== Add Button ====== */
+.add-btn {
+  background: #3c8dbc;
+  color: #fff;
   border: none;
-  border-radius: 12px;
-  font-size: 1.1rem;
+  padding: 12px 24px;
+  border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  display: inline-block;
-  text-align: center;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
-.btn-primary {
-  background: linear-gradient(90deg, #31c48d, #3c8dbc);
-  color: white;
-}
-
-.btn-primary:hover {
-  background: linear-gradient(90deg, #3c8dbc, #31c48d);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(60, 141, 188, 0.3);
-}
-
-.btn-secondary {
-  background: #6c757d;
-  color: white;
-}
-
-.btn-secondary:hover {
-  background: #5a6268;
+.add-btn:hover {
+  background: #337ab7;
   transform: translateY(-2px);
 }
 
-.btn-danger {
-  background: #dc3545;
-  color: white;
-}
-
-.btn-danger:hover {
-  background: #c82333;
-  transform: translateY(-2px);
-}
-
-.btn-success {
-  background: #28a745;
-  color: white;
-}
-
-.btn-success:hover {
-  background: #218838;
-  transform: translateY(-2px);
-}
-
-.btn-sm {
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
-}
-
-.dashboard-content {
-  background: white;
-  padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(49, 196, 141, 0.1);
-}
-
-.dashboard-content h2 {
-  color: #31896f;
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-  font-weight: 700;
-}
-
+/* ====== Error Message ====== */
 .error-message {
-  background: #f8d7da;
-  color: #721c24;
-  padding: 1rem;
+  background: #ffebee;
+  color: #c62828;
+  border: 1px solid #ffcdd2;
+  padding: 12px 16px;
   border-radius: 8px;
-  margin-bottom: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 25px;
 }
 
-.error-message button {
+.close-error {
   background: none;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   cursor: pointer;
-  color: #721c24;
+  color: #c62828;
 }
 
+/* ====== Dashboard Content ====== */
+.dashboard-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: #1565c0;
+  margin-bottom: 20px;
+}
+
+/* ====== Loading ====== */
 .loading {
   text-align: center;
-  font-size: 1.2rem;
-  color: #31896f;
-  padding: 2rem;
-}
-
-@media (max-width: 768px) {
-  .dashboard-container {
-    padding: 1rem;
-  }
-  
-  .dashboard-header {
-    padding: 1.5rem;
-  }
-  
-  .dashboard-header h1 {
-    font-size: 2rem;
-  }
-  
-  .dashboard-content {
-    padding: 1.5rem;
-  }
+  font-size: 1.1rem;
+  color: #555;
 }
