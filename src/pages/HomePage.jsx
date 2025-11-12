@@ -48,38 +48,52 @@ export default function HomePage() {
 
       {/* Features */}
       <section className="features-section">
-        <h2>Why Choose PharmaLink?</h2>
-        <div className="features-grid">
-          <div className="feature-card">
-            <span className="feature-icon">
-              <svg width="28" height="28" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="11" rx="3" fill="#31c48d" /><path d="M7 7V5.5A4.5 4.5 0 0 1 16 5.5V7" stroke="#3c8dbc" strokeWidth="2" /></svg>
-            </span>
-            <h3>Secure & Private</h3>
-            <p>End-to-end encryption keeps your data safe and confidential.</p>
-          </div>
-          <div className="feature-card">
-            <span className="feature-icon">
-              <svg width="28" height="28" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="#3c8dbc" /><path d="M12 8v4l3 2" stroke="#fff" strokeWidth="2" strokeLinecap="round" /></svg>
-            </span>
-            <h3>Instant Connections</h3>
-            <p>Reach pharmacies and customers instantly with live updates.</p>
-          </div>
-          <div className="feature-card">
-            <span className="feature-icon">
-              <svg width="28" height="28" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="7" fill="#31c48d" /><path d="M9 12h6" stroke="#fff" strokeWidth="2" /></svg>
-            </span>
-            <h3>Easy Management</h3>
-            <p>Manage inventory, orders, and prescriptions in one simple dashboard.</p>
-          </div>
-          <div className="feature-card">
-            <span className="feature-icon">
-              <svg width="28" height="28" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5" fill="#3c8dbc" /><path d="M12 8v8" stroke="#fff" strokeWidth="2" /><path d="M8 12h8" stroke="#fff" strokeWidth="2" /></svg>
-            </span>
-            <h3>24/7 Support</h3>
-            <p>We’re here for you, any time of day.</p>
-          </div>
-        </div>
-      </section>
+  <h2>Why Choose PharmaLink?</h2>
+  <div className="features-grid">
+    
+    <div className="feature-card">
+      <span className="feature-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3c8dbc" strokeWidth="2">
+          <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/>
+        </svg>
+      </span>
+      <h3>Compare Medicine Prices</h3>
+      <p>Compare prices and pick what suits you best.</p>
+    </div>
+
+    <div className="feature-card">
+      <span className="feature-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="#3c8dbc">
+          <circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2" stroke="#fff" strokeWidth="2" strokeLinecap="round"/>
+        </svg>
+      </span>
+      <h3>Instant Connections</h3>
+      <p>Reach pharmacies and customers instantly with live updates.</p>
+    </div>
+
+    <div className="feature-card">
+      <span className="feature-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24">
+          <rect x="5" y="5" width="14" height="14" rx="7" fill="#31c48d"/><path d="M9 12h6" stroke="#fff" strokeWidth="2"/>
+        </svg>
+      </span>
+      <h3>Easy Management</h3>
+      <p>Manage inventory, orders, and prescriptions in one dashboard.</p>
+    </div>
+
+    <div className="feature-card">
+      <span className="feature-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24">
+          <rect x="4" y="4" width="16" height="16" rx="5" fill="#3c8dbc"/><path d="M12 8v8M8 12h8" stroke="#fff" strokeWidth="2"/>
+        </svg>
+      </span>
+      <h3>24/7 Support</h3>
+      <p>We’re here for you anytime, day or night.</p>
+    </div>
+
+  </div>
+</section>
+
 
       {/* CTA */}
       <section className="cta-section">

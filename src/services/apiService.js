@@ -1,9 +1,9 @@
 
 //Below is the backend url for the deployment environment
-const BASE_URL = 'https://pharmalink-x7j6.onrender.com/api';
+// const BASE_URL = 'https://pharmalink-x7j6.onrender.com/api';
 
   // Below is the backend url for the local
-  //  const BASE_URL = 'http://127.0.0.1:8000/api'; 
+   const BASE_URL = 'http://127.0.0.1:8000/api'; 
 
 //Below is the front end url for the staging environment
   // const BASE_URL = 'https://group-bse-25-7-pharma-link-frontend-mu.vercel.app/api';
