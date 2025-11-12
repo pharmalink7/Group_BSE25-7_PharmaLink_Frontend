@@ -1,7 +1,7 @@
 // src/pages/MedicinesPage.jsx
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { getAllMedicines, getAllPharmacies } from "../services/apiService";
+import { getAllMedicines, getAllPharmacies,analyzeSymptoms } from "../services/apiService";
 import MedicineList from "../Components/MedicineList";
 import MedicineSearch from "../Components/MedicineSearch";
 import "../styles/MedicinesPage.css";
@@ -15,8 +15,26 @@ const MedicinesPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
   const searchTimeoutRef = useRef(null);
+  const [symptoms, setSymptoms] = useState("");
+  const [aiResult, setAiResult] = useState(null);
+  const [aiLoading, setAiLoading] = useState(false);
+  const [aiError, setAiError] = useState("");
 
-  
+
+  const handleAnalyzeSymptoms = async () => {
+  try {
+    setAiLoading(true);
+    setAiError("");
+    const data = await analyzeSymptoms(symptoms); // call your backend AI endpoint
+    setAiResult(data);
+  } catch (err) {
+    setAiError(err.message || "Something went wrong.");
+  } finally {
+    setAiLoading(false);
+  }
+};
+
+
   const fetchData = useCallback(async (searchTerm = "") => {
     try {
       setLoading(true);
@@ -149,54 +167,103 @@ const MedicinesPage = () => {
   }
 
   return (
-    <div className="medicines-page">
-      
-      <MedicineSearch
-        onSearch={handleSearch}
-        onCategoryFilter={handleCategoryFilter}
-        categoryFilter={categoryFilter}
-        onClearFilters={clearFilters}
-        searchQuery={searchQuery}
+  <div className="medicines-page-container">
+    {/* AI Symptom Checker */}
+    <div className="ai-chat-container">
+      <h2 className="ai-chat-title">AI Symptom Checker</h2>
+
+      <div className="chat-box">
+        {aiResult && (
+          <>
+            <div className="chat-message user-message">{symptoms}</div>
+            <div className="chat-message ai-message">
+              <p className="chat-section-title">Condition:</p>
+              <p>{aiResult.suggested_condition}</p>
+
+              <p className="chat-section-title">Suggested Medicines:</p>
+              <ul>
+                {aiResult.suggested_medicines.map((med, i) => (
+                  <li key={i}>{med}</li>
+                ))}
+              </ul>
+
+              <p className="chat-section-title">Advice:</p>
+              <p>{aiResult.advice}</p>
+            </div>
+          </>
+        )}
+      </div>
+
+      <textarea
+        className="chat-input"
+        rows="3"
+        placeholder="Describe your symptoms..."
+        value={symptoms}
+        onChange={(e) => setSymptoms(e.target.value)}
       />
 
-      <div className="results-section">
-        <div className="results-header">
-          <h2>
-            {searchQuery
-              ? `Search Results for "${searchQuery}"`
-              : "All Medicines"}
-            {categoryFilter && ` in ${categoryFilter.replace("-", " ")}`}
-          </h2>
-          <span className="results-count">
-            {medicines.length} medicine{medicines.length !== 1 ? "s" : ""} found
-          </span>
-        </div>
+      <button
+        onClick={handleAnalyzeSymptoms}
+        className="chat-send-btn"
+        disabled={aiLoading || !symptoms.trim()}
+      >
+        {aiLoading ? "Analyzing..." : "Send"}
+      </button>
 
-        {loading ? (
-          <div className="loading">Searching...</div>
-        ) : (
-          <MedicineList medicines={medicines} isOwner={false} />
-        )}
-         {error && (
+      {aiError && <p className="chat-error">{aiError}</p>}
+    </div>
+
+    {/* Medicine search */}
+    <MedicineSearch
+      onSearch={handleSearch}
+      onCategoryFilter={handleCategoryFilter}
+      categoryFilter={categoryFilter}
+      onClearFilters={clearFilters}
+      searchQuery={searchQuery}
+    />
+
+    {/* Medicine results */}
+    <div className="results-section">
+      <div className="results-header">
+        <h2>
+          {searchQuery
+            ? `Search Results for "${searchQuery}"`
+            : "All Medicines"}
+          {categoryFilter && ` in ${categoryFilter.replace("-", " ")}`}
+        </h2>
+        <span className="results-count">
+          {medicines.length} medicine{medicines.length !== 1 ? "s" : ""} found
+        </span>
+      </div>
+
+      {loading ? (
+        <div className="loading">Searching...</div>
+      ) : (
+        <MedicineList medicines={medicines} isOwner={false} />
+      )}
+
+      {error && (
         <div className="error-message">
           {error}
           <button onClick={() => setError(null)}>×</button>
         </div>
       )}
-      </div>
-
-      {pharmacies.length > 0 && (
-        <div className="pharmacies-section">
-          <h2>Available Pharmacies</h2>
-          <ul>
-            {pharmacies.map((pharma, idx) => (
-              <li key={idx}>{pharma.name || pharma}</li>
-            ))}
-          </ul>
-        </div>
-      )}
     </div>
-  );
+
+    {/* Pharmacies */}
+    {pharmacies.length > 0 && (
+      <div className="pharmacies-section">
+        <h2>Available Pharmacies</h2>
+        <ul>
+          {pharmacies.map((pharma, idx) => (
+            <li key={idx}>{pharma.name || pharma}</li>
+          ))}
+        </ul>
+      </div>
+    )}
+  </div>
+);
+
 };
 
 export default MedicinesPage;
